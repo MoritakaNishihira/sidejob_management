@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["dom", "es2015.promise", "es2015.collection", "es5"],
+    "checkJs": true,
+    "strict": true,
+    "module": "amd"
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "_exports"]
+}
