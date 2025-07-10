@@ -1,4 +1,14 @@
+＜機能概要＞
+
+＜構成＞
+side_job_management
+ -- doc フォルダ
+ -- src フォルダ
+ -- db フォルダ
+
+＜データベース＞
 DBはSQliteを使う
+DBファイルは db フォルダにある
 テーブル
 　jobname
 　　id int
@@ -12,6 +22,7 @@ DBはSQliteを使う
 　　JobType int
 　　Rewards money
 
+cssは 
 
 一覧画面から詳細画面に遷移する
 　稼働日をクリックすると詳細画面に遷移する
