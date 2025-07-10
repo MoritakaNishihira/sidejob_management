@@ -1,0 +1,50 @@
+DBはSQliteを使う
+テーブル
+　jobname
+　　id int
+    JobName varchar(20)
+
+　side_job_management
+　　JobDate date
+　　JobStartTime time
+　　JobEndTime time
+    JobUpTime time
+　　JobType int
+　　Rewards money
+
+
+一覧画面から詳細画面に遷移する
+　稼働日をクリックすると詳細画面に遷移する
+
+一覧画面（list.js）
+　詳細画面のすべての項目
+
+詳細画面（detail.js）
+　＜画面項目＞
+　　稼働日
+　　　年月日を入力
+　　　カレンダーからも入力できる
+
+　　稼働開始時刻(time)
+　　　時刻を入力
+　　　timepickerからも入力できる
+
+　　稼働終了時刻(time)
+　　　時刻を入力
+　　　timepickerからも入力できる
+
+　　稼働時間
+　　　稼働開始時刻と稼働終了時刻から計算
+　　　
+　　業務名
+　　　ドロップダウンから選択
+　　　データソースは jobname テーブル
+
+　　報酬
+　　　手入力
+　　　数値のみ
+　　　桁区切りを入れる
+
+　
+
+
