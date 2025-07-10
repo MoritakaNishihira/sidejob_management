@@ -22,7 +22,7 @@ DBファイルは db フォルダにある
 　　JobType int
 　　Rewards money
 
-cssは 
+cssは Material-UI のCSSを使う
 
 一覧画面から詳細画面に遷移する
 　稼働日をクリックすると詳細画面に遷移する
