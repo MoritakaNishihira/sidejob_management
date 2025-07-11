@@ -1,38 +1,53 @@
-＜機能概要＞
+＜アプリ＞
+　アプリ名：Side_Job_Management
 
-＜構成＞
-side_job_management
- -- doc フォルダ
- -- src フォルダ
- -- db フォルダ
+＜ディレクトリ構成＞
+　side_job_management フォルダ
+ 　-- doc フォルダ
+ 　-- src フォルダ
+ 　-- db フォルダ
+
 ＜データベース＞
-DBはSQliteを使う
-DBファイルは db フォルダにある
-テーブル
-　JobName
-　　id int
-    JobName varchar(20)
+　DBはSQliteを使う
+　DBファイルは db フォルダにある
+　データベース名
+　　side_job_management
+　テーブル名
+　　JobName
+　　　Id int,PrimaryKey
+    　JobName varchar(20)
 
-　Side_Job_Management
-　　JobDate date
-　　JobStartTime time
-　　JobEndTime time
-    JobUpTime time
-　　JobType int
-　　Rewards money
+　　Side_Job_Management
+　　　JobDate date,PrimaryKey
+　　　JobType int(2),SecondaryKey
+　　　JobStartTime time
+　　　JobEndTime time
+    　JobUpTime time
+　　　Rewards money(7.0)
 
-＜画面構成＞
+＜共通仕様＞
+　・JSのElectronを使った デスクトップアプリケーション
 　・JsとHtmlとcssはsrcフォルダに格納する
 　・cssは Material-UI のCSSを使う
 　・cssのファイル名は Side_Job_Management.css
+　・画面全体を見栄えよく
+
+＜画面構成＞
 　ポータル画面（Portal.js）
 　　・一覧画面を表示するエリアを設ける
 　　・グラフエリアを表示するエリアを設ける
 　　　・一覧画面のエリアとグラフエリアには 2mm の隙間を開ける
+　　　・グラフエリアに表示するグラフは以下の通り
+　　　・横には２個並べる（グラフが４つある場合は、縦横に２個ずつ並べる。グラフが６つある場合は、縦に３つ、横に２個並べる）
+　　　・グラフの縦横のサイズは、windowのサイズから案分する
+　　　・グラフ間には、縦横2mmの隙間を開ける
 
-　一覧画面（List.js）
+　　・画面起動時、DBのバックアップを取得する
+　　　バックアップファイル名：side_job_management_[バックアップ時点の年月日時分秒]
+
+　一覧画面（ListView.js）
 　　・一覧に表示する項目
-　　　・稼働日付(Side_Job_Managementテーブルの JobDate)
+　　　・稼働日(Side_Job_Managementテーブルの JobDate)
 　　　　・id JobDate
 　　　　・書式 yyyy-MM-dd
 　　　・稼働開始時間(Side_Job_Managementテーブルの JobStartTime)
@@ -44,73 +59,67 @@ DBファイルは db フォルダにある
 　　　・実働時間(Side_Job_Managementテーブルの JobUpTime)
 　　　　・id JobUpTime
 　　　　・書式 hh:mm（60分単位）
-　　　・業務名(jobnameテーブルの JobName、 KEYは JobName.id = Side_Job_Management.JobType)
+　　　・業務名(jobnameテーブルの JobName、 KEYは JobName.Id = Side_Job_Management.JobType)
 　　　　・id JobName、
 　　　・報酬(Side_Job_Managementテーブルの Rewards)
 　　　　・id Rewards
 　　　　・書式 #,##0
-　　　・一覧の並び順は 稼働日付の降順
-
+　　　・一覧の並び順は稼働日の降順
+　　　・各項目の横幅は自動調整する
+　　　・稼働日をクリックすると詳細画面に遷移する　　
+　　
 　　・年を入力するテキストボックス
+　　　・idは JobYearText
+　　　・ラベルを配置する
+　　　・ラベル名は 稼働年
 　　　・数字のみ入力
 　　　・初期値はシステム日付（年）
+　　　・4桁の入力制限
 
 　　・表示ボタン
+　　　・idは ListViewButton
+　　　・ボタンの表示名は 表示
 　　　・年の右隣に配置
-　　　・クリックすると、入力された年をキーに side_job_management からデータを取得して一覧表示する
+　　　・クリックすると、入力された年をキーに side_job_managementテーブル からデータを取得して一覧表示する
 　　　　・年に 2025が入力された場合、2025/4/1～2026/3/31の範囲でデータを取得する
 　　　　・年が未入力の場合、システム日付（年）で検索する
 　　　　・データがない場合、「データが見つかりませんでした」のメッセージを表示する
 
 　　・初期表示
-　　　・年の初期値でside_job_management からデータを取得して一覧表示する
+　　　・年の初期値で side_job_management からデータを取得して一覧表示する
+　　　・データがない場合、「データが見つかりませんでした」のメッセージは表示しない
 
 　　・一覧リスト
 　　　・年の下に配置
-　　　・稼働日をクリックすると詳細画面に遷移する
-
-　詳細画面（Detail.js）
-
-　グラフエリア
-　　・グラフエリアに表示するグラフは以下の通り
-　　・横には２個並べる（グラフが４つある場合は、縦横に２個ずつ並べる）
-　　・グラフの縦横のサイズは、windowのサイズから案分する
-　　・グラフ間には、2mmの隙間を開ける
-　　
-
-一覧画面から詳細画面に遷移する
-　稼働日をクリックすると詳細画面に遷移する
-
-一覧画面（list.js）
-　詳細画面のすべての項目を表示する
-
-詳細画面（detail.js）
-　＜画面項目＞
-　　稼働日
-　　　年月日を入力
-　　　カレンダーからも入力できる
-
-　　稼働開始時刻(time)
-　　　時刻を入力
-　　　timePickerからも入力できる
-
-　　稼働終了時刻(time)
-　　　時刻を入力
-　　　timePickerからも入力できる
-
-　　稼働時間
-　　　稼働開始時刻と稼働終了時刻から計算
-　　　60分単位で計算する
 　　　
-　　業務名
-　　　ドロップダウンから選択
-　　　データソースは jobname テーブル
+　詳細画面（Detail.js）
+　　＜画面項目＞
+　　　稼働日
+　　　　年月日を入力
+　　　　カレンダーからも入力できる
 
-　　報酬
-　　　手入力
-　　　数値のみ
-　　　桁区切りを入れる
+　　　稼働開始時刻(time)
+　　　　時刻を入力
+　　　　timePickerからも入力できる
 
-　
+　　　稼働終了時刻(time)
+　　　　時刻を入力
+　　　　timePickerからも入力できる
 
+　　　稼働時間
+　　　　稼働開始時刻と稼働終了時刻から計算
+　　　　60分単位で計算する
+　　　
+　　　業務名
+　　　　ドロップダウンから選択
+　　　　データソースは jobname テーブル
 
+　　　報酬
+　　　　手入力
+　　　　数値のみ
+　　　　桁区切りを入れる
+
+　　　登録
+　　　　クリックすると入力した内容を Side_Job_Managementテーブル に登録する
+　　　　すでに登録済みの場合は、とメッセージを出力(KEYは、Side_Job_Managementテーブルの JobDate と JobType)
+　　　　　出力メッセージ：すでに登録済みです
