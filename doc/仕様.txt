@@ -1,3 +1,10 @@
+＜共通仕様＞
+　・JSのElectronを使った デスクトップアプリケーション
+　・JsとHtmlとcssはsrcフォルダに格納する
+　・cssは Material-UI のCSSを使う
+　・cssのファイル名は Side_Job_Management.css
+　・画面全体を見栄えよく
+
 ＜アプリ＞
 　アプリ名：Side_Job_Management
 
@@ -24,13 +31,6 @@
 　　　JobEndTime time
     　JobUpTime time
 　　　Rewards money(7.0)
-
-＜共通仕様＞
-　・JSのElectronを使った デスクトップアプリケーション
-　・JsとHtmlとcssはsrcフォルダに格納する
-　・cssは Material-UI のCSSを使う
-　・cssのファイル名は Side_Job_Management.css
-　・画面全体を見栄えよく
 
 ＜画面構成＞
 　ポータル画面（Portal.js）
