@@ -11,7 +11,7 @@
 　DBはSQliteを使う
 　DBファイルは db フォルダにある
 　データベース名
-　　side_job_management
+　　Side_Job_Management
 　テーブル名
 　　JobName
 　　　Id int,PrimaryKey
@@ -46,6 +46,7 @@
 　　　バックアップファイル名：side_job_management_[バックアップ時点の年月日時分秒]
 
 　一覧画面（ListView.js）
+　　・idは ListView
 　　・一覧に表示する項目
 　　　・稼働日(Side_Job_Managementテーブルの JobDate)
 　　　　・id JobDate
@@ -56,7 +57,7 @@
 　　　・稼働終了時間(Side_Job_Managementテーブルの JobEndTime)
 　　　　・id JobEndTime
 　　　　・書式 hh:mm
-　　　・実働時間(Side_Job_Managementテーブルの JobUpTime)
+　　　・稼働時間(Side_Job_Managementテーブルの JobUpTime)
 　　　　・id JobUpTime
 　　　　・書式 hh:mm（60分単位）
 　　　・業務名(jobnameテーブルの JobName、 KEYは JobName.Id = Side_Job_Management.JobType)
@@ -85,41 +86,69 @@
 　　　　・年が未入力の場合、システム日付（年）で検索する
 　　　　・データがない場合、「データが見つかりませんでした」のメッセージを表示する
 
+　　・新規登録ボタン
+　　　・idは NewDataButton
+　　　・ボタンの表示名は 新規登録
+　　　・表示の右隣に配置
+　　　・クリックすると、詳細画面に遷移する。
+　　　・詳細画面の稼働日にシステム日付（年月日）を引き渡す
+
 　　・初期表示
 　　　・年の初期値で side_job_management からデータを取得して一覧表示する
 　　　・データがない場合、「データが見つかりませんでした」のメッセージは表示しない
+　　　・年を入力するテキストボックスを表示する
+　　　・表示ボタンを表示する
+　　　・新規登録ボタンを表示する
 
 　　・一覧リスト
 　　　・年の下に配置
 　　　
 　詳細画面（Detail.js）
-　　＜画面項目＞
-　　　稼働日
-　　　　年月日を入力
-　　　　カレンダーからも入力できる
+　　・idは Detail
+　　・画面に表示する項目
+　　　・稼働日
+　　　　・idは JobDate
+　　　　・表示名は 稼働日
+　　　　・年月日を入力
+　　　　・カレンダーからも入力できる
 
-　　　稼働開始時刻(time)
-　　　　時刻を入力
-　　　　timePickerからも入力できる
+　　　・稼働開始時刻(time)
+　　　　・idは JobStartTime
+　　　　・表示名は 稼働開始時刻
+　　　　・時刻を入力
+　　　　・timePickerからも入力できる
 
-　　　稼働終了時刻(time)
-　　　　時刻を入力
-　　　　timePickerからも入力できる
+　　　・稼働終了時刻(time)
+　　　　・idは JobEndTime
+　　　　・表示名は 稼働終了時刻
+　　　　・時刻を入力
+　　　　・timePickerからも入力できる
 
-　　　稼働時間
-　　　　稼働開始時刻と稼働終了時刻から計算
-　　　　60分単位で計算する
+　　　・稼働時間
+　　　　・idは JobUpTime
+　　　　・表示名は 稼働時間
+　　　　・稼働開始時刻と稼働終了時刻から計算
+　　　　・60分単位で計算する
 　　　
-　　　業務名
-　　　　ドロップダウンから選択
-　　　　データソースは jobname テーブル
+　　　・業務名
+　　　　・idは JobName
+　　　　・表示名は 業務名
+　　　　・ドロップダウンから選択
+　　　　・データソースは JobName テーブル
 
-　　　報酬
-　　　　手入力
-　　　　数値のみ
-　　　　桁区切りを入れる
+　　　・報酬
+　　　　・idは Rewards
+　　　　・表示名は 報酬
+　　　　・手入力
+　　　　・数値のみ
+　　　　・桁区切りを入れる
 
-　　　登録
-　　　　クリックすると入力した内容を Side_Job_Managementテーブル に登録する
-　　　　すでに登録済みの場合は、とメッセージを出力(KEYは、Side_Job_Managementテーブルの JobDate と JobType)
-　　　　　出力メッセージ：すでに登録済みです
+　　　・登録ボタン
+　　　　・idは UpdateButton
+　　　　・表示名は 登録、更新
+　　　　・クリックすると入力した内容を Side_Job_Managementテーブル に登録する
+　　　　・すでに登録済みの場合は、入力されている内容で更新する(KEYは、Side_Job_Managementテーブルの JobDate と JobType)
+　　　　・登録に成功した場合は、「登録しました」のメッセージを表示する
+　　　　・更新に成功した場合は、「更新しました」のメッセージを表示する
+　　　　・登録（更新）に失敗した場合は、「登録（更新）に失敗しました」のメッセージを表示する
+　　　　・入力前の状態と変わらない場合は、何もせず「更新しました」のメッセージのみを表示する
