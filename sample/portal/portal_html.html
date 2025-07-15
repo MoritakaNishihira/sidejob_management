@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポータル画面</title>
+    <link rel="stylesheet" href="portal_css.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="portal-container">
+        <div class="left-panel" id="leftPanel">
+            <div class="graph-area" id="graphArea">
+                <div class="graph-container">
+                    <div class="graph-title">グラフ1</div>
+                    <div class="chart-wrapper">
+                        <canvas class="chart-canvas" id="chart1"></canvas>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    <div class="graph-title">グラフ2</div>
+                    <div class="chart-wrapper">
+                        <canvas class="chart-canvas" id="chart2"></canvas>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    <div class="graph-title">グラフ3</div>
+                    <div class="chart-wrapper">
+                        <canvas class="chart-canvas" id="chart3"></canvas>
+                    </div>
+                </div>
+                <div class="graph-container">
+                    <div class="graph-title">グラフ4</div>
+                    <div class="chart-wrapper">
+                        <canvas class="chart-canvas" id="chart4"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resizer" id="resizer"></div>
+        
+        <div class="right-panel" id="rightPanel">
+            <div class="button-section">
+                <button class="nav-button" onclick="openListScreen()">一覧表示</button>
+                <button class="nav-button" onclick="openDetailScreen()">詳細画面</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="portal_js.js"></script>
+</body>
+</html>
